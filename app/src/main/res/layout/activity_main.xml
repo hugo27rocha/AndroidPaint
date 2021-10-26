@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="169dp">
+        android:layout_height="88dp">
 
         <Button
             android:id="@+id/settingsbutton"
@@ -32,6 +32,14 @@
             app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.462" />
+
+        <TextView
+            android:id="@+id/light_level"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView

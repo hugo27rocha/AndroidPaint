@@ -4,12 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/red"
+
     tools:context=".PaleteFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <Button
+        android:id="@+id/erase"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Palette" />
+        android:layout_height="63dp"
+        android:text="Erase" />
+
+    <Button
+        android:id="@+id/changecolor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red" />
 
 </FrameLayout>

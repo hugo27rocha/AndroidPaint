@@ -13,8 +13,10 @@ import android.view.View;
 public class PaintView extends View {
 
     public LayoutParams params;
+    public Paint brush = new Paint();
     private Path path = new Path();
-    private Paint brush = new Paint();
+
+
 
     public PaintView(Context context) {
         super(context);
@@ -22,14 +24,19 @@ public class PaintView extends View {
 
     }
 
+
+
     private void initPaint(){
         brush.setAntiAlias(true);
-        brush.setColor(Color.CYAN);
+        brush.setColor(Color.BLACK);
         brush.setStyle(Paint.Style.STROKE);
         brush.setStrokeJoin(Paint.Join.ROUND);
         brush.setStrokeWidth(8f);
-
         params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+    }
+
+    public void changeColor(){
+        brush.setColor(Color.RED);
     }
 
 

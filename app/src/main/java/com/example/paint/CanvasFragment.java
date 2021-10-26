@@ -1,10 +1,12 @@
 package com.example.paint;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,6 +25,9 @@ public class CanvasFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private PaintView canvas;
+
 
     public CanvasFragment() {
         // Required empty public constructor
@@ -46,6 +51,8 @@ public class CanvasFragment extends Fragment {
         return fragment;
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +60,31 @@ public class CanvasFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return new PaintView(container.getContext());
+
+
+        PaintView view = new PaintView(container.getContext());
+        //view.changeColor();
+        setCanvas(view);
+        //cor();
+
+        //return new PaintView(container.getContext());
+        return view;
     }
+
+    void setCanvas(PaintView canvas) {
+        this.canvas = canvas;
+    }
+
+
+    void cor() {
+        canvas.changeColor();
+    }
+
 }
