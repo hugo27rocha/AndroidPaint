@@ -7,9 +7,11 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="88dp">
+        android:layout_height="163dp">
 
         <Button
             android:id="@+id/settingsbutton"
@@ -33,14 +35,34 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.462" />
 
+
+        <!-- Values -->
+
         <TextView
             android:id="@+id/light_level"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
+            android:layout_width="177dp"
+            android:layout_height="93dp"
             android:layout_centerInParent="true"
             android:textSize="20sp" />
 
     </LinearLayout>
+
+    <!-- Values -->
+    <TextView
+        android:id="@+id/value_azimuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       />
+
+    <TextView
+        android:id="@+id/value_pitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/value_roll"
+        android:layout_width="211dp"
+        android:layout_height="96dp" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView3"

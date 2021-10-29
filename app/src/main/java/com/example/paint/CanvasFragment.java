@@ -68,23 +68,13 @@ public class CanvasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-
         PaintView view = new PaintView(container.getContext());
-        //view.changeColor();
-        setCanvas(view);
-        //cor();
-
-        //return new PaintView(container.getContext());
         return view;
     }
 
-    void setCanvas(PaintView canvas) {
-        this.canvas = canvas;
-    }
 
 
-    void cor() {
-        canvas.changeColor();
-    }
+
+
 
 }

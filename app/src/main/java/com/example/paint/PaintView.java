@@ -1,9 +1,11 @@
 package com.example.paint;
 
+import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.ViewGroup.LayoutParams;
 import android.content.Context;
@@ -24,6 +26,11 @@ public class PaintView extends View {
 
     }
 
+    public PaintView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initPaint();
+    }
+
 
 
     private void initPaint(){
@@ -37,6 +44,11 @@ public class PaintView extends View {
 
     public void changeColor(){
         brush.setColor(Color.RED);
+    }
+
+    @SuppressLint("ResourceAsColor")
+    public void erase(){
+        brush.setColor( R.color.white);
     }
 
 

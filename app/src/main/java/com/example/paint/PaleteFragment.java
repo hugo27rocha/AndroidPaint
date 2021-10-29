@@ -43,6 +43,7 @@ public class PaleteFragment extends Fragment {
 
     //private PaintView canvas;
     //private PaintView canvas;
+    private PaintView canvas;
 
     public PaleteFragment() {
         // Required empty public constructor
@@ -110,6 +111,7 @@ public class PaleteFragment extends Fragment {
             public void onClick(View v)
             {
                 getView().setBackgroundColor(Color.WHITE);
+
                // canvas.changeColor();
 
 
