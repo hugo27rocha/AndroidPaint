@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private Button setB;
     private Button aboutB;
+    private Button mapsB;
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
@@ -112,6 +113,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
+        //About button
+        mapsB = findViewById(R.id.mapss);
+        mapsB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(intent);
+                // finish();
+
+            }
+        });
+
 
 
 
@@ -129,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         public void onSensorChanged(SensorEvent event) {
 // The value of the first subscript in the values array is the current light intensity
             float value = event.values[0];
-            lightLevel.setText("light level" + value + " lx");
+            //lightLevel.setText("light level" + value + " lx");
             if (value < 20.0){
                 getWindow().getDecorView().setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.grey));
 
