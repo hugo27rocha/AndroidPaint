@@ -1,5 +1,7 @@
 package com.example.paint;
 
+//import static com.example.paint.PaintView.brush;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -18,7 +20,14 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener{
 
@@ -39,10 +48,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     // sensor manager.
     private Sensor mSensorAccelerometer;
     private Sensor mSensorMagnetometer;
-    // TextViews to display current sensor values.
-    private TextView mTextSensorAzimuth;
-    private TextView mTextSensorPitch;
-    private TextView mTextSensorRoll;
 
     // Very small values for the accelerometer (on all three axes) should
     // be interpreted as 0. This value is the amount of acceptable
@@ -55,8 +60,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private PaintView paintView;
 
 
+    //Shake
+    private SensorManager mmSensorManager;
+    private float mAccel;
+    private float mAccelCurrent;
+    private float mAccelLast;
 
 
+
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
+    DatabaseReference root = db.getReference();
 
 
     @Override
@@ -67,15 +80,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
         //LUZ
-        lightLevel = (TextView) findViewById(R.id.light_level);
+       // lightLevel = (TextView) findViewById(R.id.light_level);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         sensorManager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
 
-
-        mTextSensorAzimuth = (TextView) findViewById(R.id.value_azimuth);
-        mTextSensorPitch = (TextView) findViewById(R.id.value_pitch);
-        mTextSensorRoll = (TextView) findViewById(R.id.value_roll);
 
         // Get accelerometer and magnetometer sensors from the sensor manager.
         // The getDefaultSensor() method returns null if the sensor
@@ -86,6 +95,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 Sensor.TYPE_ACCELEROMETER);
         mSensorMagnetometer = mSensorManager.getDefaultSensor(
                 Sensor.TYPE_MAGNETIC_FIELD);
+
+
+        mmSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        Objects.requireNonNull(mmSensorManager).registerListener(mSensorListener, mmSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_NORMAL);
+        mAccel = 10f;
+        mAccelCurrent = SensorManager.GRAVITY_EARTH;
+        mAccelLast = SensorManager.GRAVITY_EARTH;
 
 
         //settingsbutton
@@ -113,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             }
         });
 
-        //About button
+        //Maps button
         mapsB = findViewById(R.id.mapss);
         mapsB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,6 +169,39 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
         }
     };
+
+
+    private final SensorEventListener mSensorListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            float x = event.values[0];
+            float y = event.values[1];
+            float z = event.values[2];
+            mAccelLast = mAccelCurrent;
+            mAccelCurrent = (float) Math.sqrt((double) (x * x + y * y + z * z));
+            float delta = mAccelCurrent - mAccelLast;
+            mAccel = mAccel * 0.9f + delta;
+            if (mAccel > 12) {
+                Toast.makeText(getApplicationContext(), "Shake detected", Toast.LENGTH_SHORT).show();
+                //brush.setColor(Color.RED);
+            }
+        }
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                SensorManager.SENSOR_DELAY_NORMAL);
+        super.onResume();
+    }
+    @Override
+    protected void onPause() {
+        mSensorManager.unregisterListener(mSensorListener);
+        super.onPause();
+    }
 
 
     /**

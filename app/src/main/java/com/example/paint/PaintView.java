@@ -14,9 +14,9 @@ import android.view.View;
 
 public class PaintView extends View {
 
-    public LayoutParams params;
-    public Paint brush = new Paint();
-    private Path path = new Path();
+    static LayoutParams params;
+    static Paint brush = new Paint();
+    static Path path = new Path();
 
 
 
@@ -66,6 +66,7 @@ public class PaintView extends View {
             case MotionEvent.ACTION_MOVE:
                 path.lineTo(pointX, pointY);// makes a line to the point each time this event is fired
                 break;
+
 
             default:
                 return false;

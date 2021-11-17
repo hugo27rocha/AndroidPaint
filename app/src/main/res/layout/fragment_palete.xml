@@ -9,16 +9,31 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <Button
-        android:id="@+id/erase"
-        android:layout_width="match_parent"
-        android:layout_height="63dp"
-        android:text="Erase" />
 
-    <Button
-        android:id="@+id/changecolor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Red" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/redb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red" />
+
+        <Button
+            android:id="@+id/greenb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Green" />
+
+        <Button
+            android:id="@+id/blueb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Blue" />
+    </LinearLayout>
 
 </FrameLayout>

@@ -29,6 +29,7 @@ public class CanvasFragment extends Fragment {
     private PaintView canvas;
 
 
+
     public CanvasFragment() {
         // Required empty public constructor
     }
@@ -69,8 +70,10 @@ public class CanvasFragment extends Fragment {
         // Inflate the layout for this fragment
 
         PaintView view = new PaintView(container.getContext());
+
         return view;
     }
+
 
 
 

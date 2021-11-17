@@ -1,9 +1,14 @@
 package com.example.paint;
 
+//import static com.example.paint.PaintView.brush;
+
+import static com.example.paint.PaintView.brush;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
@@ -44,6 +49,8 @@ public class PaleteFragment extends Fragment {
     //private PaintView canvas;
     //private PaintView canvas;
     private PaintView canvas;
+
+    private Button Red;
 
     public PaleteFragment() {
         // Required empty public constructor
@@ -91,53 +98,45 @@ public class PaleteFragment extends Fragment {
                 container, false);
 
 
-
-        Button erasebutton = (Button) view.findViewById(R.id.erase);
-        erasebutton.setOnClickListener(new View.OnClickListener() {
+        Button button = (Button) view.findViewById(R.id.redb);
+        button.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
-
-                getView().setBackgroundColor(Color.WHITE);
+                // do something
+                brush.setColor(Color.RED);
             }
         });
 
-
-
-
-        Button colorbutton = (Button) view.findViewById(R.id.changecolor);
-        colorbutton.setOnClickListener(new View.OnClickListener() {
+        Button button2 = (Button) view.findViewById(R.id.greenb);
+        button2.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
-                getView().setBackgroundColor(Color.WHITE);
+                // do something
+                brush.setColor(Color.GREEN);
+            }
+        });
 
-               // canvas.changeColor();
-
-
-                //Fragment canvas = fragmentManager.findFragmentByTag("fragmentContainerView3");
-
-
-
-                //PaintView paintView = new PaintView(getContext());
-                //paintView.brush.setColor(Color.BLACK);
-               // paintView.changeColor();
-                //listener.setCanvas(paintView);
-                //listener.Change();
-                //canvas.changeColor();
+        Button button3 = (Button) view.findViewById(R.id.blueb);
+        button3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                // do something
+                brush.setColor(Color.BLUE);
 
 
             }
         });
 
-
-       // return inflater.inflate(R.layout.fragment_palete, container, false);
         return view;
+
+
+
     }
 
-
-
-
-
-
-}
+    }
